@@ -1,0 +1,350 @@
+﻿{
+  "version": 3,
+  "buildPresets": [
+    {
+      "name": "windows-x64-debug",
+      "displayName": "Windows x64 Debug",
+      "configurePreset": "windows-x64-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "windows-x64-release",
+      "displayName": "Windows x64 Release",
+      "configurePreset": "windows-x64-release",
+      "configuration": "Release"
+    },
+    {
+      "name": "windows-x86-debug",
+      "displayName": "Windows x86 Debug",
+      "configurePreset": "windows-x86-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "windows-x86-release",
+      "displayName": "Windows x86 Release",
+      "configurePreset": "windows-x86-release",
+      "configuration": "Release"
+    },
+    {
+      "name": "linux-x64-debug",
+      "displayName": "Linux x64 Debug",
+      "configurePreset": "linux-x64-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "linux-x64-release",
+      "displayName": "Linux x64 Release",
+      "configurePreset": "linux-x64-release",
+      "configuration": "Release"
+    },
+    {
+      "name": "linux-arm64-debug",
+      "displayName": "Linux arm64 Debug",
+      "configurePreset": "linux-arm64-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "linux-arm64-release",
+      "displayName": "Linux arm64 Release",
+      "configurePreset": "linux-arm64-release",
+      "configuration": "Release"
+    },
+    {
+      "name": "linux-armel-debug",
+      "displayName": "Linux armel Debug",
+      "configurePreset": "linux-armel-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "linux-armel-release",
+      "displayName": "Linux armel Release",
+      "configurePreset": "linux-armel-release",
+      "configuration": "Release"
+    },
+    {
+      "name": "linux-armhf-debug",
+      "displayName": "Linux armhf Debug",
+      "configurePreset": "linux-armhf-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "linux-armhf-release",
+      "displayName": "Linux armhf Release",
+      "configurePreset": "linux-armhf-release",
+      "configuration": "Release"
+    }
+  ],
+  "configurePresets": [
+    {
+      "name": "windows-base",
+      "hidden": true,
+      "generator": "Visual Studio 18 2026",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "cl.exe",
+        "CMAKE_CXX_COMPILER": "cl.exe",
+        "HX_SYSTEM": "windows",
+        "HX_OUT_DIR": "${sourceDir}/out/${presetName}"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "windows-x64-debug",
+      "displayName": "Windows x64 Debug",
+      "inherits": "windows-base",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "HX_ARCHITECTURE": "x64"
+      }
+    },
+    {
+      "name": "windows-x64-release",
+      "displayName": "Windows x64 Release",
+      "inherits": "windows-base",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "HX_ARCHITECTURE": "x64"
+      }
+    },
+    {
+      "name": "windows-x86-debug",
+      "displayName": "Windows x86 Debug",
+      "inherits": "windows-base",
+      "architecture": {
+        "value": "x86",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "HX_ARCHITECTURE": "x86"
+      }
+    },
+    {
+      "name": "windows-x86-release",
+      "displayName": "Windows x86 Release",
+      "inherits": "windows-base",
+      "architecture": {
+        "value": "x86",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "HX_ARCHITECTURE": "x86"
+      }
+    },
+    {
+      "name": "linux-x64-base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_SYSTEM_NAME": "Linux",
+        "CMAKE_SYSTEM_PROCESSOR": "x86_64",
+        "CMAKE_C_COMPILER": "/bin/x86_64-linux-gnu-gcc",
+        "CMAKE_CXX_COMPILER": "/bin/x86_64-linux-gnu-g++",
+        "CMAKE_FIND_ROOT_PATH": "/usr/x86_64-linux-gnu",
+        "CMAKE_FIND_ROOT_PATH_MODE_PROGRAM": "NEVER",
+        "CMAKE_FIND_ROOT_PATH_MODE_LIBRARY": "ONLY",
+        "CMAKE_FIND_ROOT_PATH_MODE_INCLUDE": "ONLY",
+        "HX_SYSTEM": "linux",
+        "HX_OUT_DIR": "${sourceDir}/out/${presetName}"
+      },
+      "environment": {
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+          "copyAdditionalIncludeDirectoriesList": [ "${sourceDir}/out/intellisense" ],
+          "copySourcesOptions": { "exclusionList": [ ".vs", "out", "install", "packages" ] },
+          "sourceDir": "$env{HOME}/.vs/HxLibs/$ms{projectDirName}"
+        }
+      }
+    },
+    {
+      "name": "linux-x64-debug",
+      "displayName": "Linux x64 Debug",
+      "inherits": "linux-x64-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "linux-x64-release",
+      "displayName": "Linux x64 Release",
+      "inherits": "linux-x64-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_FLAGS_RELEASE": "-O2 -DNDEBUG",
+        "CMAKE_CXX_FLAGS_RELEASE": "-O2 -DNDEBUG"
+      }
+    },
+    {
+      "name": "linux-arm64-base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_SYSTEM_NAME": "Linux",
+        "CMAKE_SYSTEM_PROCESSOR": "aarch64",
+        "CMAKE_C_COMPILER": "/bin/aarch64-linux-gnu-gcc",
+        "CMAKE_CXX_COMPILER": "/bin/aarch64-linux-gnu-g++",
+        "CMAKE_FIND_ROOT_PATH": "/usr/aarch64-linux-gnu",
+        "CMAKE_FIND_ROOT_PATH_MODE_PROGRAM": "NEVER",
+        "CMAKE_FIND_ROOT_PATH_MODE_LIBRARY": "ONLY",
+        "CMAKE_FIND_ROOT_PATH_MODE_INCLUDE": "ONLY",
+        "HX_SYSTEM": "linux",
+        "HX_ARCHITECTURE": "arm64",
+        "HX_OUT_DIR": "${sourceDir}/out/${presetName}"
+      },
+      "environment": {
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+          "copyAdditionalIncludeDirectoriesList": [ "${sourceDir}/out/intellisense" ],
+          "copySourcesOptions": { "exclusionList": [ ".vs", "out", "install", "packages" ] },
+          "sourceDir": "$env{HOME}/.vs/HxLibs/$ms{projectDirName}"
+        }
+      }
+    },
+    {
+      "name": "linux-arm64-debug",
+      "displayName": "Linux arm64 Debug",
+      "inherits": "linux-arm64-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "linux-arm64-release",
+      "displayName": "Linux arm64 Release",
+      "inherits": "linux-arm64-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "linux-armel-base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_SYSTEM_NAME": "Linux",
+        "CMAKE_SYSTEM_PROCESSOR": "arm",
+        "CMAKE_C_COMPILER": "/bin/arm-linux-gnueabi-gcc",
+        "CMAKE_CXX_COMPILER": "/bin/arm-linux-gnueabi-g++",
+        "CMAKE_FIND_ROOT_PATH": "/usr/arm-linux-gnueabi",
+        "CMAKE_FIND_ROOT_PATH_MODE_PROGRAM": "NEVER",
+        "CMAKE_FIND_ROOT_PATH_MODE_LIBRARY": "ONLY",
+        "CMAKE_FIND_ROOT_PATH_MODE_INCLUDE": "ONLY",
+        "HX_SYSTEM": "linux",
+        "HX_ARCHITECTURE": "armel",
+        "HX_OUT_DIR": "${sourceDir}/out/${presetName}"
+      },
+      "environment": {
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+          "copyAdditionalIncludeDirectoriesList": [ "${sourceDir}/out/intellisense" ],
+          "copySourcesOptions": { "exclusionList": [ ".vs", "out", "install", "packages" ] },
+          "sourceDir": "$env{HOME}/.vs/HxLibs/$ms{projectDirName}"
+        }
+      }
+    },
+    {
+      "name": "linux-armel-debug",
+      "displayName": "Linux armel Debug",
+      "inherits": "linux-armel-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "linux-armel-release",
+      "displayName": "Linux armel Release",
+      "inherits": "linux-armel-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "linux-armhf-base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_SYSTEM_NAME": "Linux",
+        "CMAKE_SYSTEM_PROCESSOR": "arm",
+        "CMAKE_C_COMPILER": "/bin/arm-linux-gnueabihf-gcc",
+        "CMAKE_CXX_COMPILER": "/bin/arm-linux-gnueabihf-g++",
+        "CMAKE_FIND_ROOT_PATH": "/usr/arm-linux-gnueabihf",
+        "CMAKE_FIND_ROOT_PATH_MODE_PROGRAM": "NEVER",
+        "CMAKE_FIND_ROOT_PATH_MODE_LIBRARY": "ONLY",
+        "CMAKE_FIND_ROOT_PATH_MODE_INCLUDE": "ONLY",
+        "HX_SYSTEM": "linux",
+        "HX_ARCHITECTURE": "armhf",
+        "HX_OUT_DIR": "${sourceDir}/out/${presetName}"
+      },
+      "environment": {
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+          "copyAdditionalIncludeDirectoriesList": [ "${sourceDir}/out/intellisense" ],
+          "copySourcesOptions": { "exclusionList": [ ".vs", "out", "install", "packages" ] },
+          "sourceDir": "$env{HOME}/.vs/HxLibs/$ms{projectDirName}"
+        }
+      }
+    },
+    {
+      "name": "linux-armhf-debug",
+      "displayName": "Linux armhf Debug",
+      "inherits": "linux-armhf-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "linux-armhf-release",
+      "displayName": "Linux armhf Release",
+      "inherits": "linux-armhf-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ]
+}

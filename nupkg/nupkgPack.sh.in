@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# 记录当前运行目录以在结束时恢复
+runDir=$(pwd)
+# 进入安装目录
+cd @PROJECT_SOURCE_DIR@/install
+
+echo "create temp dir: @HX_SYSTEM@-@HX_ARCHITECTURE@-@CMAKE_BUILD_TYPE@2 ..."
+mkdir @HX_SYSTEM@-@HX_ARCHITECTURE@-@CMAKE_BUILD_TYPE@2
+
+echo "copy install files (@HX_SYSTEM@-@HX_ARCHITECTURE@-@CMAKE_BUILD_TYPE@) to temp dir ..."
+cp -rf -P ./@HX_SYSTEM@-@HX_ARCHITECTURE@-@CMAKE_BUILD_TYPE@/* @HX_SYSTEM@-@HX_ARCHITECTURE@-@CMAKE_BUILD_TYPE@2/
+
+cd @HX_SYSTEM@-@HX_ARCHITECTURE@-@CMAKE_BUILD_TYPE@2/build/native
+echo "zip bin dir & delete bin dir ..."
+zip -r -y bin.zip bin/
+rm -rf bin
+cd ../../..
+
+echo "nuget packing ..."
+nuget pack "@PROJECT_SOURCE_DIR@/install/@HX_SYSTEM@-@HX_ARCHITECTURE@-@CMAKE_BUILD_TYPE@2/@PROJECT_NAME@.nuspec"
+
+echo "delete temp dir: @HX_SYSTEM@-@HX_ARCHITECTURE@-@CMAKE_BUILD_TYPE@2 ..."
+rm -rf @HX_SYSTEM@-@HX_ARCHITECTURE@-@CMAKE_BUILD_TYPE@2
+
+# 恢复运行目录
+cd $runDir

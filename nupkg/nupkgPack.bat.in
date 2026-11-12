@@ -1,0 +1,2 @@
+echo "nuget packing..."
+nuget pack "@HX_INSTALL_DIR@/@PROJECT_NAME@.nuspec"
